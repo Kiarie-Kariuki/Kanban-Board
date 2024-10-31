@@ -1,7 +1,7 @@
 {
   "name": "kanban-board",
   "version": "0.1.0",
-  "homepage": "https://gitname.github.io/react-gh-pages",
+  "homepage": "https://github.com/Kiarie-Kariuki/Kanban-Board.git",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.3",
