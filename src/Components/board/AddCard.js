@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, MenuItem } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import axios from "axios";
 
 const priorityOptions = [
   { value: 'low', label: 'Low' },
@@ -8,32 +9,52 @@ const priorityOptions = [
   { value: 'high', label: 'High' },
 ];
 
-
-const AddCard = ({ setCards }) => {
+const AddCard = ({ setTasks }) => {
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("medium");
   const [adding, setAdding] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title.trim() || !description.trim()) return;
-
-    const newCard = {
-      column: "todo", 
-      title: text.trim(),
+  
+    const newTask = {
+      title: title.trim(),
       description: description.trim(),
       priority,
-      id: Math.random().toString(),
+      status: "todo", 
     };
+  
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.post('http://localhost:5000/api/tasks', newTask, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      // Update the tasks state to include the new task
+      setTasks((prevTasks) => {
+        const newTasks = { ...prevTasks };
+        if (!newTasks[newTask.status]) {
+          newTasks[newTask.status] = [];
+        }
+        newTasks[newTask.status].push(response.data);
+        return newTasks;
+      });
+    } catch (error) {
+      console.error('Error adding task:', error);
+    } finally {
+      // Reset form states as needed
+      setTitle("");
+      setDescription("");
+      setPriority("medium");
+    }
 
-    setCards((prevCards) => [...prevCards, newCard]);
-    setTitle("");
-    setDescription("")
-    setPriority("medium"); 
-    setText(""); 
-    setAdding(false);
   };
 
   return (
@@ -75,6 +96,7 @@ const AddCard = ({ setCards }) => {
               </MenuItem>
             ))}
           </TextField>
+          {error && <p style={{ color: 'red' }}>{error}</p>} 
           <div className="mt-1.5 flex items-center justify-end gap-1.5">
             <Button onClick={() => setAdding(false)} color="secondary">
               Close
