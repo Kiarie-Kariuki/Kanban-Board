@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Card from "./Card";
 import AddCard from "./AddCard";
-import DropIndicator from "./DropIndicator";
+// import DropIndicator from "./DropIndicator";
 import styled from "styled-components";
 
 const ColumnContainer = styled.div`
@@ -9,7 +9,7 @@ const ColumnContainer = styled.div`
   flex-shrink: 0;       
   background-color: #2a2a2a; 
   border-radius: 8px;   
-  padding: 10px;        
+  padding: 10px; 
 `;
 
 const Column = ({ title, headingColor, cards, column, setCards }) => {
@@ -69,7 +69,7 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
         {filteredCards.map((c) => (
           <Card key={c.id} {...c} handleDragStart={handleDragStart} handleDelete={handleDelete} updateCard={updateCard} />
         ))}
-        <DropIndicator beforeId={null} column={column} />
+        {/* <DropIndicator beforeId={null} column={column} /> */}
         {column === "todo" && <AddCard setCards={setCards} />}
       </div>
     </ColumnContainer>
