@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -17,6 +18,8 @@ import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import AppTheme from '../shared-theme/AppTheme';
 import ColorModeSelect from '../shared-theme/ColorModeSelect';
+import { signin } from './api';
+import { useUser } from '../UserContext';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -66,6 +69,9 @@ export default function SignIn(props) {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
+  const {login} = useUser();
+
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -75,17 +81,6 @@ export default function SignIn(props) {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
-      return;
-    }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
 
   const validateInputs = () => {
     const email = document.getElementById('email');
@@ -112,6 +107,33 @@ export default function SignIn(props) {
     }
 
     return isValid;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (emailError || passwordError) {
+      return;
+    }
+
+    const data = new FormData(event.currentTarget);
+    const userData = {
+      email: data.get('email'),
+      password: data.get('password'),
+    };
+
+    try {
+      const response = await signin(userData.email, userData.password);
+      if (response.status === 200) {
+        console.log('Sign-in successful:', response.data);
+        // Save the token in local storage
+        localStorage.setItem('token', response.data.token);        
+        login(response.data)
+        navigate('/board'); 
+      }
+    } catch (error) {
+      console.error('Sign-in failed:', error);
+    }
   };
 
   return (
