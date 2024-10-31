@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Card from "./Card";
 import AddCard from "./AddCard";
-// import DropIndicator from "./DropIndicator";
 import styled from "styled-components";
 
 const ColumnContainer = styled.div`
@@ -69,7 +68,6 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
         {filteredCards.map((c) => (
           <Card key={c.id} {...c} handleDragStart={handleDragStart} handleDelete={handleDelete} updateCard={updateCard} />
         ))}
-        {/* <DropIndicator beforeId={null} column={column} /> */}
         {column === "todo" && <AddCard setCards={setCards} />}
       </div>
     </ColumnContainer>
