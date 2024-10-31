@@ -1,71 +1,75 @@
-# Getting Started with Create React App
+## Kanban Board Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Kanban Board application! This project is a simple and intuitive tool for managing tasks and projects, inspired by the Kanban method of workflow visualization. Below, you’ll find instructions for setting up the application, a list of technologies used, design decisions made, and an estimate of the time spent on the project.
 
-## Available Scripts
+# Table of Contents
 
-In the project directory, you can run:
+    Features
+    Technologies Used
+    Installation Instructions
+    Running the App Locally
+    Design Decisions
+    Time Spent on the Project
 
-### `npm start`
+# Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    User authentication with sign-up and sign-in capabilities.
+    A visually appealing Kanban board to manage tasks in different states: Backlog, TODO, In Progress, and Complete.
+    Drag-and-drop functionality for easy task management.
+    Responsive design for usability across devices.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Technologies Used
 
-### `npm test`
+    React: For building the user interface.
+    React Router: For managing navigation between different views.
+    Material-UI: For styling and UI components.
+    Styled Components: For scoped and dynamic styling of components.
+    Context API: For managing user authentication state.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Installation Instructions
 
-### `npm run build`
+To set up this project locally, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone the repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+git clone https://github.com/Kiarie-Kariuki/Kanban-Board.git
+cd kanban-board
 
-### `npm run eject`
+Install dependencies: Make sure you have Node.js installed. Then, run:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Set up environment variables (if applicable): If your application requires environment variables (e.g., API keys), create a .env file in the root of the project and add the necessary variables.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Start the development server: Run the following command to start the application:
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    npm start
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    Open your browser: Navigate to http://localhost:3000 to see the application in action.
 
-### Code Splitting
+# Running the App Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+After following the installation instructions, you can run the app locally using the command:
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+npm start
 
-### Making a Progressive Web App
+This will start the development server, and you can view the application in your web browser.
+Design Decisions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    User Interface: The application uses Material-UI for a modern look and feel, making it user-friendly and visually appealing.
+    State Management: The Context API is utilized for user authentication state management, allowing easy access across components without prop drilling.
+    Responsiveness: CSS Flexbox and Styled Components are used to ensure the application is responsive and looks good on all devices.
+    Drag-and-Drop: Implementing drag-and-drop functionality enhances the user experience, making it easy to move tasks between columns.
 
-### Advanced Configuration
+# Time Spent on the Project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Approximately 25 hours were spent on this project, including:
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Kanban-Board
+    Planning and designing the UI.
+    Implementing user authentication.
+    Building the Kanban board with drag-and-drop features.
+    Testing and debugging.
