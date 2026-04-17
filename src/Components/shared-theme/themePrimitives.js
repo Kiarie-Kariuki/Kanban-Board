@@ -5,29 +5,29 @@ const defaultTheme = createTheme();
 const customShadows = [...defaultTheme.shadows];
 
 export const brand = {
-  50: 'hsl(210, 100%, 95%)',
-  100: 'hsl(210, 100%, 92%)',
-  200: 'hsl(210, 100%, 80%)',
-  300: 'hsl(210, 100%, 65%)',
-  400: 'hsl(210, 98%, 48%)',
-  500: 'hsl(210, 98%, 42%)',
-  600: 'hsl(210, 98%, 55%)',
-  700: 'hsl(210, 100%, 35%)',
-  800: 'hsl(210, 100%, 16%)',
-  900: 'hsl(210, 100%, 21%)',
+  50: 'hsl(217, 100%, 97%)',
+  100: 'hsl(217, 100%, 94%)',
+  200: 'hsl(217, 98%, 85%)',
+  300: 'hsl(217, 97%, 70%)',
+  400: 'hsl(217, 95%, 54%)',
+  500: 'hsl(217, 92%, 46%)',
+  600: 'hsl(217, 90%, 38%)',
+  700: 'hsl(217, 88%, 30%)',
+  800: 'hsl(217, 85%, 20%)',
+  900: 'hsl(217, 82%, 12%)',
 };
 
 export const gray = {
-  50: 'hsl(220, 35%, 97%)',
-  100: 'hsl(220, 30%, 94%)',
-  200: 'hsl(220, 20%, 88%)',
-  300: 'hsl(220, 20%, 80%)',
-  400: 'hsl(220, 20%, 65%)',
-  500: 'hsl(220, 20%, 42%)',
-  600: 'hsl(220, 20%, 35%)',
-  700: 'hsl(220, 20%, 25%)',
-  800: 'hsl(220, 30%, 6%)',
-  900: 'hsl(220, 35%, 3%)',
+  50: 'hsl(220, 50%, 98%)',
+  100: 'hsl(220, 40%, 96%)',
+  200: 'hsl(220, 35%, 91%)',
+  300: 'hsl(220, 30%, 84%)',
+  400: 'hsl(220, 20%, 70%)',
+  500: 'hsl(220, 15%, 55%)',
+  600: 'hsl(220, 12%, 42%)',
+  700: 'hsl(220, 15%, 28%)',
+  800: 'hsl(220, 25%, 12%)',
+  900: 'hsl(220, 30%, 4%)',
 };
 
 export const green = {
@@ -72,21 +72,31 @@ export const red = {
 export const getDesignTokens = (mode) => {
   customShadows[1] =
     mode === 'dark'
-      ? 'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px'
-      : 'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px';
+      ? '0 2px 8px 0 rgba(0, 0, 0, 0.4), 0 4px 16px 0 rgba(0, 0, 0, 0.3)'
+      : '0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 4px 16px 0 rgba(0, 0, 0, 0.1)';
+  
+  customShadows[2] =
+    mode === 'dark'
+      ? '0 4px 12px 0 rgba(0, 0, 0, 0.5), 0 8px 24px 0 rgba(0, 0, 0, 0.35)'
+      : '0 4px 12px 0 rgba(0, 0, 0, 0.1), 0 8px 24px 0 rgba(0, 0, 0, 0.12)';
+
+  customShadows[3] =
+    mode === 'dark'
+      ? '0 6px 16px 0 rgba(0, 0, 0, 0.6), 0 12px 32px 0 rgba(0, 0, 0, 0.4)'
+      : '0 6px 16px 0 rgba(0, 0, 0, 0.12), 0 12px 32px 0 rgba(0, 0, 0, 0.15)';
 
   return {
     palette: {
       mode,
       primary: {
         light: brand[200],
-        main: brand[400],
+        main: brand[500],
         dark: brand[700],
         contrastText: brand[50],
         ...(mode === 'dark' && {
           contrastText: brand[50],
           light: brand[300],
-          main: brand[400],
+          main: brand[500],
           dark: brand[700],
         }),
       },
@@ -137,9 +147,9 @@ export const getDesignTokens = (mode) => {
       },
       divider: mode === 'dark' ? alpha(gray[700], 0.6) : alpha(gray[300], 0.4),
       background: {
-        default: 'hsl(0, 0%, 99%)',
-        paper: 'hsl(220, 35%, 97%)',
-        ...(mode === 'dark' && { default: gray[900], paper: 'hsl(220, 30%, 7%)' }),
+        default: 'hsl(0, 0%, 99.5%)',
+        paper: 'hsl(220, 40%, 98%)',
+        ...(mode === 'dark' && { default: gray[900], paper: 'hsl(220, 30%, 8%)' }),
       },
       text: {
         primary: gray[800],
@@ -160,56 +170,70 @@ export const getDesignTokens = (mode) => {
       },
     },
     typography: {
-      fontFamily: ['"Inter", "sans-serif"'].join(','),
+      fontFamily: ['"Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"'].join(','),
       h1: {
         fontSize: defaultTheme.typography.pxToRem(48),
-        fontWeight: 600,
+        fontWeight: 700,
         lineHeight: 1.2,
         letterSpacing: -0.5,
       },
       h2: {
         fontSize: defaultTheme.typography.pxToRem(36),
-        fontWeight: 600,
-        lineHeight: 1.2,
+        fontWeight: 700,
+        lineHeight: 1.3,
       },
       h3: {
         fontSize: defaultTheme.typography.pxToRem(30),
-        lineHeight: 1.2,
+        fontWeight: 600,
+        lineHeight: 1.3,
       },
       h4: {
         fontSize: defaultTheme.typography.pxToRem(24),
         fontWeight: 600,
-        lineHeight: 1.5,
+        lineHeight: 1.4,
       },
       h5: {
         fontSize: defaultTheme.typography.pxToRem(20),
         fontWeight: 600,
+        lineHeight: 1.4,
       },
       h6: {
         fontSize: defaultTheme.typography.pxToRem(18),
         fontWeight: 600,
+        lineHeight: 1.5,
       },
       subtitle1: {
-        fontSize: defaultTheme.typography.pxToRem(18),
+        fontSize: defaultTheme.typography.pxToRem(16),
+        fontWeight: 500,
+        lineHeight: 1.5,
       },
       subtitle2: {
         fontSize: defaultTheme.typography.pxToRem(14),
         fontWeight: 500,
+        lineHeight: 1.5,
       },
       body1: {
         fontSize: defaultTheme.typography.pxToRem(14),
+        lineHeight: 1.6,
       },
       body2: {
-        fontSize: defaultTheme.typography.pxToRem(14),
-        fontWeight: 400,
+        fontSize: defaultTheme.typography.pxToRem(13),
+        lineHeight: 1.6,
       },
       caption: {
         fontSize: defaultTheme.typography.pxToRem(12),
-        fontWeight: 400,
+        fontWeight: 500,
+        lineHeight: 1.5,
+      },
+      button: {
+        fontSize: defaultTheme.typography.pxToRem(14),
+        fontWeight: 600,
+        textTransform: 'none',
+        lineHeight: 1.5,
       },
     },
     shape: {
-      borderRadius: 8,
+      borderRadius: 12,
     },
     shadows: customShadows,
   };
@@ -220,7 +244,7 @@ export const colorSchemes = {
     palette: {
       primary: {
         light: brand[200],
-        main: brand[400],
+        main: brand[500],
         dark: brand[700],
         contrastText: brand[50],
       },
@@ -250,8 +274,8 @@ export const colorSchemes = {
       },
       divider: alpha(gray[300], 0.4),
       background: {
-        default: 'hsl(0, 0%, 99%)',
-        paper: 'hsl(220, 35%, 97%)',
+        default: 'hsl(0, 0%, 99.5%)',
+        paper: 'hsl(220, 40%, 98%)',
       },
       text: {
         primary: gray[800],
@@ -263,7 +287,7 @@ export const colorSchemes = {
         selected: `${alpha(gray[200], 0.3)}`,
       },
       baseShadow:
-        'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
+        '0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 4px 16px 0 rgba(0, 0, 0, 0.1)',
     },
   },
   dark: {
@@ -271,7 +295,7 @@ export const colorSchemes = {
       primary: {
         contrastText: brand[50],
         light: brand[300],
-        main: brand[400],
+        main: brand[500],
         dark: brand[700],
       },
       info: {
@@ -301,7 +325,7 @@ export const colorSchemes = {
       divider: alpha(gray[700], 0.6),
       background: {
         default: gray[900],
-        paper: 'hsl(220, 30%, 7%)',
+        paper: 'hsl(220, 30%, 8%)',
       },
       text: {
         primary: 'hsl(0, 0%, 100%)',
@@ -312,68 +336,82 @@ export const colorSchemes = {
         selected: alpha(gray[600], 0.3),
       },
       baseShadow:
-        'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
+        '0 2px 8px 0 rgba(0, 0, 0, 0.4), 0 4px 16px 0 rgba(0, 0, 0, 0.3)',
     },
   },
 };
 
 export const typography = {
-  fontFamily: ['"Inter", "sans-serif"'].join(','),
+  fontFamily: ['"Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"'].join(','),
   h1: {
     fontSize: defaultTheme.typography.pxToRem(48),
-    fontWeight: 600,
+    fontWeight: 700,
     lineHeight: 1.2,
     letterSpacing: -0.5,
   },
   h2: {
     fontSize: defaultTheme.typography.pxToRem(36),
-    fontWeight: 600,
-    lineHeight: 1.2,
+    fontWeight: 700,
+    lineHeight: 1.3,
   },
   h3: {
     fontSize: defaultTheme.typography.pxToRem(30),
-    lineHeight: 1.2,
+    fontWeight: 600,
+    lineHeight: 1.3,
   },
   h4: {
     fontSize: defaultTheme.typography.pxToRem(24),
     fontWeight: 600,
-    lineHeight: 1.5,
+    lineHeight: 1.4,
   },
   h5: {
     fontSize: defaultTheme.typography.pxToRem(20),
     fontWeight: 600,
+    lineHeight: 1.4,
   },
   h6: {
     fontSize: defaultTheme.typography.pxToRem(18),
     fontWeight: 600,
+    lineHeight: 1.5,
   },
   subtitle1: {
-    fontSize: defaultTheme.typography.pxToRem(18),
+    fontSize: defaultTheme.typography.pxToRem(16),
+    fontWeight: 500,
+    lineHeight: 1.5,
   },
   subtitle2: {
     fontSize: defaultTheme.typography.pxToRem(14),
     fontWeight: 500,
+    lineHeight: 1.5,
   },
   body1: {
     fontSize: defaultTheme.typography.pxToRem(14),
+    lineHeight: 1.6,
   },
   body2: {
-    fontSize: defaultTheme.typography.pxToRem(14),
-    fontWeight: 400,
+    fontSize: defaultTheme.typography.pxToRem(13),
+    lineHeight: 1.6,
   },
   caption: {
     fontSize: defaultTheme.typography.pxToRem(12),
-    fontWeight: 400,
+    fontWeight: 500,
+    lineHeight: 1.5,
+  },
+  button: {
+    fontSize: defaultTheme.typography.pxToRem(14),
+    fontWeight: 600,
+    textTransform: 'none',
+    lineHeight: 1.5,
   },
 };
 
 export const shape = {
-  borderRadius: 8,
+  borderRadius: 12,
 };
 
 const defaultShadows = [
   'none',
-  'var(--template-palette-baseShadow)',
+  '0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 4px 16px 0 rgba(0, 0, 0, 0.1)',
   ...defaultTheme.shadows.slice(2),
 ];
 
